@@ -3,6 +3,8 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
     order: [],
     filter: 'All',
+    loading: false,
+    error: null,
 };
 // make a slice for order
 const orderSlice = createSlice({
