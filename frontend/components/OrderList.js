@@ -10,6 +10,7 @@ export default function OrderList() {
 
   const filteredOrders =
     filter === "All" ? orders : orders.filter((order) => order.size === filter);
+  console.log('filteredOrders:', filteredOrders);
 
   return (
     <div id="orderList">
@@ -20,37 +21,21 @@ export default function OrderList() {
 
       <ol>
         {filteredOrders.map((order, idx) => (
-          <li key={idx}>
-            <div>
-              <strong>{order.customer}</strong> ordered a {order.size} pizza
-              with:
-              <ul>
-                <li>
-                  {Array.isArray(order.toppings) && order.toppings.length > 0
-                    ? order.toppings
-                        .map((t) => {
-                          const toppingMap = {
-                            1: "Pepperoni",
-                            2: "Green Peppers",
-                            3: "Pineapple",
-                            4: "Mushrooms",
-                            5: "Ham",
-                          };
-                    
-                          return toppingMap[t] || toppingMap[parseInt(t)] || t;
-                        })
-                        .join(", ")
-                    : "No toppings"}
-                </li>
-              </ul>
-            </div>
+          <li key={order.id || idx}>
+            {`${order.customer} ordered a size ${order.size} with ${
+              Array.isArray(order.toppings) && order.toppings.length > 0
+                ? order.toppings.length === 1
+                  ? "1 topping"
+                  : `${order.toppings.length} toppings`
+                : "no toppings"
+            }`}
           </li>
         ))}
       </ol>
       <div id="sizeFilters">
         Filter by size:
         {["All", "S", "M", "L"].map((size) => {
-          const className = `button-filter${size === "All" ? " active" : ""}`;
+          const className = `button-filter${size === filter ? " active" : ""}`;
           return (
             <button
               data-testid={`filterBtn${size}`}
