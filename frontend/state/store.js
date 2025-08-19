@@ -11,6 +11,7 @@ const store =
     reducer: {
       example: exampleReducer,
       // add your reducer(s) here
+      [pizzaApi.reducerPath]: pizzaApi.reducer,
       orders: orderReducer,
     },
     middleware: (getDefault) =>
