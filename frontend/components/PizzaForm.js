@@ -44,7 +44,7 @@ export default function PizzaForm() {
   return (
     <form onSubmit={handleSubmit}>
       <h2>Pizza Form</h2>
-      {isLoading && <div className="pending">Order in progress...</div>}
+      {isLoading && <div className="pending">Order in progress</div>}
       {error && (
         <div className="failure">{error.data.message}</div>
       )}
