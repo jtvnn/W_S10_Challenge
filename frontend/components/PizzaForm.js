@@ -46,7 +46,7 @@ export default function PizzaForm() {
       <h2>Pizza Form</h2>
       {isLoading && <div className="pending">Order in progress...</div>}
       {error && (
-        <div className="failure">Order failed: {error.data?.message}</div>
+        <div className="failure">{error.data.message}</div>
       )}
 
       <div className="input-group">
