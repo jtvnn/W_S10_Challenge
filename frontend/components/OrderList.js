@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useGetOrdersQuery } from "../state/pizzaApi";
+import { useGetOrdersQuery } from "../state/pizzaApi"; // this is the RTK Query hook
 import { setFilter } from "../state/orderSlice";
 
 export default function OrderList() {
@@ -8,14 +8,15 @@ export default function OrderList() {
   const filter = useSelector((state) => state.orders.filter);
   const dispatch = useDispatch();
 
+  // filters orders based on Redux state
   const filteredOrders =
     filter === "All" ? orders : orders.filter((order) => order.size === filter);
-  console.log('filteredOrders:', filteredOrders);
+  console.log("filteredOrders:", filteredOrders);
 
   return (
     <div id="orderList">
       <h2>Pizza Orders</h2>
-
+      
       {isLoading && <div>Loading orders...</div>}
       {error && <div className="failure">Error loading orders</div>}
 
@@ -32,6 +33,7 @@ export default function OrderList() {
           </li>
         ))}
       </ol>
+      {/* Filter buttons */}
       <div id="sizeFilters">
         Filter by size:
         {["All", "S", "M", "L"].map((size) => {

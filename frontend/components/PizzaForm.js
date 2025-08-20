@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useAddOrderMutation } from "../state/pizzaApi";
+import { useAddOrderMutation } from "../state/pizzaApi"; // another RTK Query hook
 
 const initialFormState = {
   // suggested
@@ -23,12 +23,13 @@ export default function PizzaForm() {
       [name]: type === "checkbox" ? checked : value,
     });
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const toppings = Object.keys(form).filter(
       (k) => ["1", "2", "3", "4", "5"].includes(k) && form[k]
     );
-    try {
+    try { // call mutation function sending data
       await addOrder({
         fullName: form.fullName,
         size: form.size,
